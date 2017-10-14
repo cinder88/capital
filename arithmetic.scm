@@ -35,6 +35,8 @@
 (define-method (- (x <number>) (a <asset>))
   (make <asset> #:capital (map - (capital a))))
 
+(define-method (- (a <asset>) (x <number>)) a)
+
 (define-method (+ (a <asset>)) a)
 
 
