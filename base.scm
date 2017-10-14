@@ -12,9 +12,6 @@
 (define (date year month day)
   (make-date 0 0 0 0 year month date 0))
 
-;; (enable-primitive-generic! equal?)
-;; (define-method (equal? a b)
-;;   ((@ (ice-9 r5rs) equal?) a b))
 (define-class <capital> ()
   (scalar #:init-keyword #:scalar
 		  #:accessor scalar)
