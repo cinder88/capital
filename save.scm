@@ -8,10 +8,6 @@
 (define-method (obj->list (p <pair>))
   `(list ,(map obj->list p)))
 
-(define-method (obj->list (u <unit>))
-  `(make <unit>
-	 #:name ,(name u)))
-
 (define-method (obj->list (c <capital>))
   `(make <capital>
 	 #:scalar ,(scalar c)
