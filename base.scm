@@ -3,7 +3,6 @@
   #:use-module (ice-9 r5rs)
   #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-19)
-  #:export (<unit> name)
   #:export (<capital> scalar unit)
   #:export (<asset> capital)
   #:export (<transaction> date from-account to-account asset)
@@ -17,18 +16,11 @@
 ;; (enable-primitive-generic! equal?)
 ;; (define-method (equal? a b)
 ;;   ((@ (ice-9 r5rs) equal?) a b))
-
-(define-class <unit> ()
-  (name #:init-keyword #:name
-		#:getter name))
-
-(define-method (equal? (u1 <unit>) (u2 <unit>))
-  (equal? (name u1) (name u2)))
-
 (define-class <capital> ()
   (scalar #:init-keyword #:scalar
 		  #:accessor scalar)
-  (unit #:init-keyword #:unit
+  (unit #:init-form 'USD
+	    #:init-keyword #:unit
 		#:getter unit))
 
 (define-method (equal? (c1 <capital>) (c2 <capital>))
@@ -36,7 +28,7 @@
 	   (equal? (unit c1) (unit c2))))
 
 (define-method (value (c <capital>))
-  (list (scalar c) (name (unit c))))
+  (list (scalar c) (unit c)))
 
 (define-class <asset> ()
   (capital #:init-form '()
