@@ -1,7 +1,6 @@
 (define-module (capital base)
   #:use-module (oop goops)
   #:use-module (ice-9 r5rs)
-  #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-19)
   #:export (<capital> scalar unit)
   #:export (<asset> capital)
