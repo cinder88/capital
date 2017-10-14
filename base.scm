@@ -46,27 +46,22 @@
 
 (define-class <ledger> ()
   (transactions #:init-form '() #:accessor transactions)
-  (accounts #:init-form '() #:accessor accounts)
-  (account-strict #:init-form #f #:accessor account-strict?))
+  (accounts #:init-form '() #:accessor accounts))
 
 (define-method (+! (L <ledger>) (acct <symbol>))
-  (if (account-strict? L)
-	  (throw 'cant-add-account-to-strict-ledger)
-	  (set! (accounts L) (delete-duplicates
-						  (cons acct (accounts L))))))
+  (let ((A (accounts L)))
+	(define (find-or-add account possible-matches)
+	  (cond ((null? possible-matches) (cons account A))
+			((eq? account (car possible-matches)) A)
+			(else (find-or-add account
+							   (cdr possible-matches)))))
+	(set! (accounts L) (find-or-add acct A))))
 
 (define-method (+! (L <ledger>) (t <transaction>))
-  (let ((from (from-account t))
-		(to (to-account t)))
-	(cond ((account-strict? L)
-		   (if (not (and (memq from L)
-						 (memq to L)))
-			   (throw 'unknown-acount)))
-		  (#t
-		   (+! L from)
-		   (+! L to))))
+  (+! L (from-account t))
+  (+! L (to-account t))
   (set! (transactions L) (cons t (transactions L)))
-  #t)
+  L)
 
 (define-method (transactions (account <symbol>) (L <ledger>))
   (filter (lambda (t) (or (equal? (from-account t) account)
