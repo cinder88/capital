@@ -1,0 +1,54 @@
+<!-- 95% W3C COMPLIANT, 95% CSS FREE, RAW HTML -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<title>Capital</title>
+ <style type="text/css">
+  <!--
+  pre { font-family: monospace }
+  tt { font-family: monospace }
+  code { font-family: monospace }
+  p.flushright { text-align: right }
+  p.flushleft { text-align: left }
+  span.sc { font-variant: small-caps }
+  span.sf { font-family: sans-serif }
+  span.skribetitle { font-family: sans-serif; font-weight: bolder; font-size: x-large; }
+  -->
+ </style>
+<meta name="keywords" content="">
+</head>
+
+<body class="document">
+<table width="100%" class="skribilo-title" cellspacing="0" cellpadding="0"><tbody>
+<tr><td align="center"><div class="skribilo-title"><strong><big>Capital</big></strong></div>
+</td></tr></tbody></table>
+<div class="skribilo-body">
+<!-- Introduction -->
+<a name="chapter1768"></a><center><h1 class="chapter">1 Introduction</h1></center><p><tt>capital</tt> is a program for keeping track of expenses.</p><p>The overall design of <tt>capital</tt> attempts to follow good
+object-oriented principles. Objects are as smart as they need
+to be, but the real intelligence of the program comes from the
+interaction of the objects. The information of each object is
+encapsulated, and is utilized by other objects as rarely as
+possible.</p><br><!-- Ontology -->
+<a name="chapter1884"></a><center><h1 class="chapter">2 Ontology</h1></center><p><tt>capital</tt> introduces a few new classes: <code>&lt;capital&gt;</code>,
+<code>&lt;asset&gt;</code>, <code>&lt;transaction&gt;</code>, and <code>&lt;ledger&gt;</code>. Here we describe
+what kinds of things these classes define.</p><p>A <code>&lt;capital&gt;</code> object represents a quantity of something.
+Accordingly, <code>&lt;capital&gt;</code> objects contain a <code>scalar</code>,
+which is a real number, and a <code>unit</code>,
+which is a symbol. (<code>&lt;capital&gt;</code> objects with a negative
+scalar may be interpreted as a debt.)
+Currently, the basic arithmetic operations
+of negation, addition, and subtraction all work on
+<code>&lt;capital&gt;</code> objects. If these operations are applied to
+<code>&lt;capital&gt;</code> objects which do not have the same <code>unit</code>,
+an <code>&lt;asset&gt;</code> is formed.</p><p>An <code>&lt;asset&gt;</code> object represents a collection of
+<code>&lt;capital&gt;</code> objects.
+An <code>&lt;asset&gt;</code> object might be imagined as the <em>value</em>
+of all contained <code>&lt;capital&gt;</code> objects.</p><br><!-- Interactions -->
+<a name="chapter1887"></a><center><h1 class="chapter">3 Interactions</h1></center><p><tt>capital</tt> makes full use of generics to enhance ease of
+use. Stanrdard arithmetic operations are extended to all
+sensible objects.</p><br></div>
+<div class="skribilo-ending">(made with <a href="http://nongnu.org/skribilo/" class="http">skribilo</a>)</div>
+</body>
+</html>

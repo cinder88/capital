@@ -1,0 +1,54 @@
+(define (capital) (tt [capital]))
+(define (<capital>) (code [<capital>]))
+(define (<asset>) (code [<asset>]))
+(define (<transaction>) (code [<transaction>]))
+(define (<ledger>) (code [<ledger>]))
+
+
+(document :title "Capital"
+
+(chapter :title "Introduction"
+
+(p [,(capital) is a program for keeping track of expenses.])
+
+(p [The overall design of ,(capital) attempts to follow good
+object-oriented principles. Objects are as smart as they need
+to be, but the real intelligence of the program comes from the
+interaction of the objects. The information of each object is
+encapsulated, and is utilized by other objects as rarely as
+possible.])
+) ;; chapter "Introduction"
+
+(chapter :title "Ontology"
+
+(p [,(capital) introduces a few new classes: ,(<capital>),
+,(<asset>), ,(<transaction>), and ,(<ledger>). Here we describe
+what kinds of things these classes define.])
+
+(p [A ,(<capital>) object represents a quantity of something.
+Accordingly, ,(<capital>) objects contain a ,(code [scalar]),
+which is a real number, and a ,(code [unit]),
+which is a symbol. (,(<capital>) objects with a negative
+scalar may be interpreted as a debt.)
+Currently, the basic arithmetic operations
+of negation, addition, and subtraction all work on
+,(<capital>) objects. If these operations are applied to
+,(<capital>) objects which do not have the same ,(code [unit]),
+an ,(<asset>) is formed.])
+
+(p [An ,(<asset>) object represents a collection of
+,(<capital>) objects.
+An ,(<asset>) object might be imagined as the ,(emph [value])
+of all contained ,(<capital>) objects.])
+
+) ;; chapter "Ontology"
+
+
+(chapter :title "Interactions"
+
+(p [,(capital) makes full use of generics to enhance ease of
+use. Stanrdard arithmetic operations are extended to all
+sensible objects.])
+) ;; chapter "Interactions"
+
+) ;; document
