@@ -41,8 +41,12 @@
 			  #:accessor asset))
 
 (define-class <ledger> ()
-  (transactions #:init-form '() #:accessor transactions)
-  (accounts #:init-form '() #:accessor accounts))
+  (accounts #:init-form '()
+			#:init-keyword #:accounts
+			#:accessor accounts)
+  (transactions #:init-form '()
+				#:init-keyword #:transactions
+				#:accessor transactions))
 
 (define-method (+! (L <ledger>) (acct <symbol>))
   (let ((A (accounts L)))
