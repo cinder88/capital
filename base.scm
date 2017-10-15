@@ -1,16 +1,12 @@
 (define-module (capital base)
-  #:use-module (oop goops)
+  :use-module (oop goops)
   #:use-module (ice-9 r5rs)
-  #:use-module (srfi srfi-19)
   #:export (<capital> scalar unit)
   #:export (<asset> capital)
   #:export (<transaction> date from-account to-account asset)
   #:export (<ledger> transactions accounts account-strict)
-  #:export (date value +! balance)
+  #:export (value +! asset balance)
   #:duplicates (merge-generics))
-
-(define (date year month day)
-  (make-date 0 0 0 0 year month date 0))
 
 (define-class <capital> ()
   (scalar #:init-keyword #:scalar
@@ -68,7 +64,7 @@
 					 (equal? (to-account t) account)))
 		  (transactions L)))
 
-(define-method (balance (account <symbol>) (L <ledger>))
+(define-method (asset (account <symbol>) (L <ledger>))
   (let ((transaction-list (transactions account L)))
 	(let ((froms (filter (λ (t) (equal? (from-account t)
 										account))
@@ -78,3 +74,10 @@
 					   transaction-list)))
 	  (- (apply + (map asset tos))
 		 (apply + (map asset froms))))))
+
+(define-method (balance (account <symbol>) (l <ledger>))
+  (value (asset account l)))
+
+(define-method (balance (l <ledger>))
+  (map (λ (a) (cons a (value (asset a l))))
+	   (accounts l)))
