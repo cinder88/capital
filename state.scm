@@ -5,7 +5,11 @@
   #:use-module (ice-9 pretty-print)
   #:use-module (capital base)
   #:export (obj->sexp save ledger-load)
-  #:duplicates (merge-generics))
+  #:duplicates (merge-generics
+				replace
+				warn-override-core
+				warn
+				last))
 
 (define (date->sexp d)
   `((@ (srfi srfi-19) make-date)

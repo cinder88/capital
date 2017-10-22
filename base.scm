@@ -6,7 +6,12 @@
   #:export (<transaction> date from-account to-account asset)
   #:export (<ledger> transactions accounts account-strict)
   #:export (value +! asset balance)
-  #:duplicates (merge-generics))
+  #:duplicates (merge-generics
+				replace
+				warn-override-core
+				warn
+				last))
+
 
 (define-class <capital> ()
   (scalar #:init-keyword #:scalar

@@ -1,7 +1,11 @@
 (define-module (capital arithmetic)
   #:use-module (capital base)
   #:use-module (oop goops)
-  #:duplicates (merge-generics))
+  #:duplicates (merge-generics
+				replace
+				warn-override-core
+				warn
+				last))
 
 (define-method (+ a b) (+ a b))
 
