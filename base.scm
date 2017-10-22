@@ -36,6 +36,10 @@
   (map value (capital a)))
 
 (define-class <transaction> ()
+  (name #:init-keyword #:name
+		#:accessor name)
+  (tags #:init-keyword #:tags
+		#:accessor tags)
   (date #:init-keyword #:date
 		#:accessor date)
   (from-account #:init-keyword #:from-account
