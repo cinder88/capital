@@ -1,4 +1,4 @@
-(add-to-load-path (dirname (getcwd)))
+(add-to-load-path (getcwd))
 
 (use-modules (oop goops)
 			 (capital date)
