@@ -29,7 +29,11 @@
 			  (split-blank-lines
 			   (string-drop s (match:end m)))))))
 
-
-(define (split-ledger-string ledger-string)
-  (filter (lambda (s) (not (equal? (string-length s) 0)))
-		  (string-split ledger-string #\newline)))
+(define (main argv)
+  (call-with-output-file (caddr argv)
+	(lambda (out)
+	  (call-with-input-file (cadr argv)
+		(lambda (in)
+		  (display (split-blank-lines
+					(load-ledger-file in))
+				   out))))))
